@@ -54,21 +54,29 @@ function workTheShoe() {
       iterator++;
       if (iterator >= values.length) iterator = 0;
       g.style.color = activeColor;
-      console.log(keys[iterator]);
     });
   });
 
   document.querySelector(".randomize").addEventListener("click", () => {
     groups.forEach((g) => {
       let i = Math.floor(Math.random() * values.length);
-      console.log(i);
       g.style.color = `#${values[i]}`;
     });
+    runAnimationOnce(document.querySelector(".shoe"), "shake");
   });
 }
 
 function setInitalState() {
   groups.forEach((g) => {
     g.style.color = "#118ab2";
+  });
+}
+
+function runAnimationOnce(element, className, callback = () => {}) {
+  if (!element) return;
+  element.classList.add(className);
+  element.addEventListener("animationend", () => {
+    element.classList.remove(className);
+    callback();
   });
 }
