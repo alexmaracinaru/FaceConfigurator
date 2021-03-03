@@ -16,6 +16,7 @@ const keys = Object.keys(colors);
 let groups = [];
 
 let activeColor = "white";
+let iterator = 0;
 
 async function init() {
   const res = await fetch("./shoe4.svg");
@@ -45,8 +46,6 @@ async function init() {
 }
 
 init();
-
-let iterator = 0;
 
 function workTheShoe() {
   groups.forEach((g) => {
