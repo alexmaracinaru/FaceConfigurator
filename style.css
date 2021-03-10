@@ -56,6 +56,7 @@ svg g path {
 }
 svg g:hover path {
   stroke: white;
+}
 
 /* 
 .colors {
@@ -107,7 +108,6 @@ svg g:hover path {
   height: auto;
   display: block;
 } */
-
 
 /* #shadow {
   pointer-events: none;
