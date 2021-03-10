@@ -66,8 +66,20 @@ main {
 }
 
 .selectedFeature {
+  position: relative;
   width: 60px;
   margin-right: 20px;
+}
+
+.selectedFeatures::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 3px;
+  background: #ff9b48;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 95%;
 }
 
 h1 {
@@ -97,7 +109,7 @@ svg g {
 svg g path {
   stroke: transparent;
   transition: all 0.2s ease-in-out;
-  stroke-width: 2;
+  stroke-width: 1;
 }
 
 #hair,
@@ -116,14 +128,15 @@ svg g path {
 .colors {
   position: absolute;
   right: 100%;
-  top: 50px;
+  top: 100px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
 }
 .colors .face,
-.colors .hair {
+.colors .hair,
+.colors .eyes {
   position: relative;
   display: flex;
   align-items: center;
