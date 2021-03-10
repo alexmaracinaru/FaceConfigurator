@@ -2,7 +2,6 @@ const headContainer = document.querySelector(".head");
 const colorsContainer = document.querySelector(".colors");
 
 let options = [];
-let activeColor = null;
 
 const features = {
   hair: false,
@@ -21,27 +20,20 @@ async function init() {
     .querySelectorAll(".option")
     .forEach((option) => option.addEventListener("click", toggleOption));
 
-  document
-    .querySelectorAll("svg [data-color]")
-    .forEach((option) => option.addEventListener("click", changeColor));
-
-  const colors = document.querySelectorAll(".face .color");
+  const colors = document.querySelectorAll(".color");
   colors.forEach((color) => {
+    const feature = color.dataset.feature;
     color.addEventListener("click", () => {
       document
-        .querySelectorAll(".color")
+        .querySelectorAll(`.color[data-feature=${feature}]`)
         .forEach((c) => c.classList.remove("active"));
       color.classList.add("active");
-      activeColor = color.computedStyleMap().get("--color");
+      const activeColor = color.computedStyleMap().get("--color");
+      document.querySelectorAll(`svg [data-color=${feature}]`).forEach((c) => {
+        c.style.color = activeColor;
+      });
     });
   });
-}
-
-function changeColor(event) {
-  const target = event.currentTarget;
-  const feature = target.dataset.color;
-
-  target.style.color = activeColor;
 }
 
 function toggleOption(event) {

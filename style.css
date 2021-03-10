@@ -117,13 +117,6 @@ svg g path {
 #beard {
   display: none;
 }
-#hair:hover,
-#mustache:hover,
-#beard:hover,
-#face:hover,
-#eyes:hover {
-  stroke: white;
-}
 
 .colors {
   position: absolute;
@@ -134,9 +127,7 @@ svg g path {
   justify-content: center;
   flex-direction: column;
 }
-.colors .face,
-.colors .hair,
-.colors .eyes {
+.row {
   position: relative;
   display: flex;
   align-items: center;
