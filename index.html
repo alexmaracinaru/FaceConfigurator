@@ -10,14 +10,38 @@
   <body>
     <main>
       <h1>Create your avatar</h1>
-      <span>Choose from the options below</span>
       <div class="head"></div>
       <!-- <div class="random">
         <button class="randomize">
           <img src="./die.svg" alt="" />
         </button> -->
       <!-- </div> -->
-      <div class="colors"></div>
+      <div class="options">
+        <div class="option" data-feature="beard">
+          <img src="./beard.svg" alt="" />
+        </div>
+        <div class="option" data-feature="hair">
+          <img src="./hair.svg" alt="" />
+        </div>
+        <div class="option" data-feature="mustache">
+          <img src="./mustache.svg" alt="" />
+        </div>
+      </div>
+      <div class="selectedFeatures"></div>
+      <div class="colors">
+        <span>Skin</span>
+        <div class="face">
+          <div class="color" style="--color: #ffc280"></div>
+          <div class="color" style="--color: #f9a34e"></div>
+          <div class="color" style="--color: #a04e04"></div>
+        </div>
+        <span>Hair</span>
+        <div class="hair">
+          <div class="color" style="--color: #ffc280"></div>
+          <div class="color" style="--color: #f9a34e"></div>
+          <div class="color" style="--color: #a04e04"></div>
+        </div>
+      </div>
     </main>
 
     <script src="./script.js"></script>

@@ -1,75 +1,108 @@
-const colors = {
-  white: "fff",
-  "Paradise Pink": "ef476f",
-  "Orange Yellow Crayola": "ffd166",
-  "Caribbean Green": "06d6a0",
-  "Blue NCS": "118ab2",
-  "Midnight Green Eagle Green": "073b4c",
-};
-
 const headContainer = document.querySelector(".head");
 const colorsContainer = document.querySelector(".colors");
 
-const values = Object.values(colors);
-const keys = Object.keys(colors);
+let options = [];
+let activeColor = null;
 
-let groups = [];
-
-let activeColor = "white";
-let iterator = 0;
+const features = {
+  hair: false,
+  beard: false,
+  mustache: false,
+};
 
 async function init() {
   const res = await fetch("./head.svg");
   const svgText = await res.text();
   headContainer.innerHTML = svgText;
 
-  groups = document.querySelectorAll("svg g");
+  options = document.querySelectorAll(".option");
 
-  setInitalState();
+  document
+    .querySelectorAll(".option")
+    .forEach((option) => option.addEventListener("click", toggleOption));
 
-  workTheShoe();
+  document
+    .querySelectorAll("svg [data-color]")
+    .forEach((option) => option.addEventListener("click", changeColor));
 
-  values.forEach((color) => {
-    const div = document.createElement("div");
-    div.classList.add("color");
-    div.style.setProperty("--color", `#${color}`);
-    div.addEventListener("click", () => {
+  const colors = document.querySelectorAll(".face .color");
+  colors.forEach((color) => {
+    color.addEventListener("click", () => {
       document
         .querySelectorAll(".color")
         .forEach((c) => c.classList.remove("active"));
-      div.classList.add("active");
-      activeColor = `#${color}`;
+      color.classList.add("active");
+      activeColor = color.computedStyleMap().get("--color");
     });
-
-    colorsContainer.appendChild(div);
   });
 }
 
-init();
+function changeColor(event) {
+  const target = event.currentTarget;
+  const feature = target.dataset.color;
 
-function workTheShoe() {
-  groups.forEach((g) => {
-    g.addEventListener("click", () => {
-      iterator++;
-      if (iterator >= values.length) iterator = 0;
-      g.style.color = activeColor;
-    });
-  });
-
-  document.querySelector(".randomize").addEventListener("click", () => {
-    groups.forEach((g) => {
-      let i = Math.floor(Math.random() * values.length);
-      g.style.color = `#${values[i]}`;
-    });
-    runAnimationOnce(document.querySelector(".shoe"), "shake");
-  });
+  target.style.color = activeColor;
 }
 
-function setInitalState() {
-  groups.forEach((g) => {
-    g.style.color = "#118ab2";
-  });
+function toggleOption(event) {
+  const target = event.currentTarget;
+  const feature = target.dataset.feature;
+  const featureElement = document.querySelector(
+    `svg [data-feature=${feature}]`
+  );
+  console.log(feature);
+
+  features[feature] = !features[feature];
+
+  if (features[feature]) {
+    console.log(`Feature ${feature} is turned on!`);
+
+    featureElement.style.display = "block";
+
+    const selectedFeature = createFeatureElement(feature);
+    document.querySelector(".selectedFeatures").appendChild(selectedFeature);
+
+    const startPos = target.getBoundingClientRect();
+    console.log(startPos);
+
+    const endPos = selectedFeature.getBoundingClientRect();
+
+    const difX =
+      startPos.left - endPos.left + startPos.width / 2 - endPos.width / 2;
+    const difY =
+      startPos.top - endPos.top + startPos.height / 2 - endPos.height / 2;
+
+    selectedFeature.style.transform = `translate(${difX}px, ${difY}px)`;
+
+    requestAnimationFrame(() => {
+      selectedFeature.style.transition = `all 0.5s linear`;
+      selectedFeature.style.transform = `translate(0, 0)`;
+    });
+  } else {
+    console.log(`Feature ${feature} is turned off!`);
+
+    featureElement.style.display = "none";
+
+    document
+      .querySelector(`.selectedFeature[data-feature=${feature}]`)
+      .remove();
+  }
 }
+
+function createFeatureElement(feature) {
+  const div = document.createElement("div");
+  div.classList.add("selectedFeature");
+  div.dataset.feature = feature;
+
+  const img = document.createElement("img");
+  img.src = `./${feature}.svg`;
+  img.alt = feature;
+
+  div.append(img);
+
+  return div;
+}
+
 function runAnimationOnce(element, className, callback = () => {}) {
   if (!element) return;
   element.classList.add(className);
@@ -78,3 +111,5 @@ function runAnimationOnce(element, className, callback = () => {}) {
     callback();
   });
 }
+
+init();
