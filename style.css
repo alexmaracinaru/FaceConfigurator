@@ -7,48 +7,43 @@
 }
 
 body {
-  width: 100%;
-  background: ghostwhite;
   font-family: "Montserrat", sans-serif;
+  background: url(./BG_1.png);
+  background-repeat: no-repeat;
 }
 
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 80px 40px;
+.bg-cover {
+  width: 100vw;
+  height: 100%;
+  z-index: -10;
 }
 
 h1 {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 30px;
-  z-index: -5;
-  display: block;
+  /* display: block; */
+  margin-top: 100px;
+  margin-left: 100px;
+}
+span {
+  margin-top: 10px;
+  margin-left: 100px;
 }
 
-.shoe {
-  position: relative;
+.head {
+  display: block;
+  margin: auto;
   z-index: 1;
 }
 
+/* 
 .colors {
   position: relative;
   display: flex;
   align-items: center;
   padding-top: 20px;
-  justify-content: flex-end;
-}
-
-.colors::before {
-  position: absolute;
-  content: "";
-  width: 700px;
-  height: 700px;
-  background: lightblue;
-  bottom: 0px;
-  right: -143px;
-  border-radius: 50%;
-  z-index: -10;
+  justify-content: center;
 }
 
 .color {
@@ -69,9 +64,9 @@ h1 {
 .color.active {
   border: 5px solid black;
   transform: scale(1.1);
-}
+} */
 
-.random {
+/* .random {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -91,16 +86,13 @@ h1 {
   width: 70px;
   height: auto;
   display: block;
-}
+} */
 
 svg {
   display: block;
-  margin: auto;
-  margin-top: 100px;
-  width: 100%;
+  margin-top: 0px;
+  width: 30%;
   height: auto;
-  transform: rotate(-20deg);
-  filter: drop-shadow(0px 35px 30px rgba(0, 0, 0, 0.7));
 }
 
 svg g {
@@ -109,9 +101,9 @@ svg g {
   position: relative;
 }
 
-svg g:hover path {
-  stroke: black;
-}
+/* svg g:hover path {
+  stroke: white;
+} */
 
 svg g path {
   stroke: transparent;
@@ -119,17 +111,14 @@ svg g path {
   stroke-width: 6;
 }
 
-#shadow {
+/* #shadow {
   pointer-events: none;
 }
 
 .shake {
   animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
-span {
-  display: block;
-  margin-top: 7px;
-}
+
 
 @keyframes shake {
   10%,
@@ -153,4 +142,4 @@ span {
     -webkit-transform: translate3d(4px, 0, 0);
     transform: translate3d(4px, 0, 0);
   }
-}
+} */

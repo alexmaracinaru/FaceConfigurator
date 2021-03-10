@@ -7,7 +7,7 @@ const colors = {
   "Midnight Green Eagle Green": "073b4c",
 };
 
-const shoeContainer = document.querySelector(".shoe");
+const headContainer = document.querySelector(".head");
 const colorsContainer = document.querySelector(".colors");
 
 const values = Object.values(colors);
@@ -19,9 +19,9 @@ let activeColor = "white";
 let iterator = 0;
 
 async function init() {
-  const res = await fetch("./shoe4.svg");
+  const res = await fetch("./head.svg");
   const svgText = await res.text();
-  shoeContainer.innerHTML = svgText;
+  headContainer.innerHTML = svgText;
 
   groups = document.querySelectorAll("svg g");
 
@@ -70,7 +70,6 @@ function setInitalState() {
     g.style.color = "#118ab2";
   });
 }
-
 function runAnimationOnce(element, className, callback = () => {}) {
   if (!element) return;
   element.classList.add(className);
