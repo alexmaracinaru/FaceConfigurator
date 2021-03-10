@@ -32,10 +32,30 @@ span {
 }
 
 .head {
-  display: block;
+  display: inline-block;
   margin: auto;
   z-index: 1;
 }
+svg {
+  display: block;
+  margin-top: 0px;
+  width: 30%;
+  height: auto;
+}
+
+svg g {
+  cursor: pointer;
+  color: transparent;
+  position: relative;
+}
+
+svg g path {
+  stroke: transparent;
+  transition: all 0.2s ease-in-out;
+  stroke-width: 6;
+}
+svg g:hover path {
+  stroke: white;
 
 /* 
 .colors {
@@ -88,28 +108,6 @@ span {
   display: block;
 } */
 
-svg {
-  display: block;
-  margin-top: 0px;
-  width: 30%;
-  height: auto;
-}
-
-svg g {
-  cursor: pointer;
-  color: transparent;
-  position: relative;
-}
-
-/* svg g:hover path {
-  stroke: white;
-} */
-
-svg g path {
-  stroke: transparent;
-  transition: all 0.2s ease-in-out;
-  stroke-width: 6;
-}
 
 /* #shadow {
   pointer-events: none;
